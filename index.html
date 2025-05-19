@@ -100,6 +100,7 @@
       border-radius: 8px;
       margin: 2rem 0;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      background: #e1f5fe; /* Fallback color */
     }
     
     .treatment-grid {
@@ -198,10 +199,15 @@
   </nav>
 
   <main class="water-container">
-    <img class="hero-img" 
-         src="/water-treatment-plant.webp" 
-         alt="Water Treatment Plant Installation Services in Oman"
-         loading="eager">
+    <!-- Fixed Hero Image with Double Fallback -->
+    <picture>
+      <source srcset="/water-treatment-hero.webp" type="image/webp">
+      <source srcset="/water-treatment-hero.jpg" type="image/jpeg"> 
+      <img class="hero-img" 
+           src="/water-treatment-hero.jpg" 
+           alt="Water Treatment Plant Installation Services in Oman - AL WEJHA GROUP"
+           loading="eager">
+    </picture>
 
     <section>
       <h2><i class="fas fa-tint" style="color: var(--water-blue);"></i> Comprehensive Water Solutions</h2>
@@ -278,5 +284,15 @@
     <p>&copy; 2025 AL WEJHA GROUP | Water Treatment Division</p>
     <p>Serving All Regions of Oman Including Muscat, Sohar, Salalah, Duqm & More</p>
   </footer>
+
+  <!-- Image Loading Fallback Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroImg = document.querySelector('.hero-img');
+      if (heroImg.naturalWidth === 0) {
+        heroImg.src = '/water-treatment-hero.jpg';
+      }
+    });
+  </script>
 </body>
 </html>
